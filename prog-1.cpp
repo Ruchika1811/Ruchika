@@ -1,19 +1,59 @@
 #include<iostream>
+#include<string.h>
 using namespace std;
-long calcfactorial(int);
+
+class Person
+{
+    private:
+        char name[10];
+        char surname[10];
+        int age;
+        char gender;
+    public:
+        void setname(char []);
+        void setsurname(char []);
+        void setage(int);
+        void setgender(char);
+        void showPerson();
+};
+
 int main()
 {
-    int n=7;
-    long fact;
-    fact=calcfactorial(n);
-    cout<<n<<" Factorial:"<<calcfactorial(n)<<endl;
+    Person ram;
+    ram.setname("Ruchika");
+    ram.setsurname("shah");
+    ram.setage(22);
+    ram.setgender('F');
+    ram.showPerson();
 
+    cout<<"--------------------------------------------------"<<endl;
+    Person rahim;
+    rahim.setname("Priyanka");
+    rahim.setsurname("mahepal");
+    rahim.setage(21);
+    rahim.setgender('F');
+    rahim.showPerson();
 }
-long calcfactorial(int x)
+void Person::setname(char nm[])
 {
-
-    long fact =1;
-    for(int i=1;i<=x;i++)
-        fact *= i;
-     return (fact);
+    strcpy(name,nm);
+}
+void Person::setsurname(char snm[])
+{
+    strcpy(surname,snm);
+}
+void Person::setage(int ag)
+{
+    age=ag;
+}
+void Person::setgender(char gen)
+{
+    gender=gen;
+}
+void Person::showPerson()
+{
+    cout<<"Name: "<<name<<endl;
+    cout<<"Surname: "<<surname<<endl;
+    cout<<"Age: "<<age<<endl;
+    cout<<"Gender: "<<gender<<endl;
 }

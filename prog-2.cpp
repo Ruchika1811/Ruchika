@@ -1,41 +1,56 @@
 #include<iostream>
+#include<string.h>
 using namespace std;
-void swapbyvalue(int ,int);
-void swapbyreference(int &,int &);
-void swapbypointer(int *,int *);
+
+class Person
+{
+    private:
+        char name[10];
+        char surname[10];
+        int age;
+        char gender;
+    public:
+        void setname(char []);
+        void setsurname(char []);
+        void setage(int);
+        void setgender(char);
+        void setPerson(char [],char [],int,char);
+        void showPerson();
+};
 int main()
 {
-    int a,b;
-    cout<<"enter two numbers:";
-    cin>>a>>b;
-    swapbyvalue(a,b);
-    cout<<"After swapbyvalue :a= "<<a<<" b= "<<b<<endl;
-    swapbyreference(a,b);
-    cout<<"After swapbyreference :a= "<<a<<" b= "<<b<<endl;
-    swapbypointer(&a,&b);
-    cout<<"After swapbypointer :a= "<<a<<" b="<<b<<endl;
+    Person amit;
+    amit.setPerson("Parth","shah",19,'M');
+    amit.showPerson();
+    return 0;
 }
-void swapbyvalue(int x,int y)
+void Person::setPerson(char nm[],char snm[],int ag,char gen)
 {
-    int temp;
-    temp=x;
-    x=y;
-    y=temp;
-    cout<<"In function  swapbyvalue is:a= "<<x<<" b= "<<y<<endl;
+    setname(nm);
+    setsurname(snm);
+    setage(ag);
+    setgender(gen);
 }
-void swapbyreference(int &x,int &y)
+void Person::setname(char nm[])
 {
-    int temp;
-    temp=x;
-    x=y;
-    y=temp;
-    cout<<"In function  swapbyreference is:a= "<<x<<" b= "<<y<<endl;
+    strcpy(name,nm);
 }
-void swapbypointer(int *x,int *y)
+void Person::setsurname(char snm[])
 {
-    int temp;
-    temp=*x;
-    *x=*y;
-    *y=temp;
-    cout<<"In function  swapbypointer is:a= "<<*x<<" b= "<<*y<<endl;
+    strcpy(surname,snm);
+}
+void Person::setage(int ag)
+{
+    age=ag;
+}
+void Person::setgender(char gen)
+{
+    gender=gen;
+}
+void Person::showPerson()
+{
+    cout<<"Name: "<<name<<endl;
+    cout<<"Surname: "<<surname<<endl;
+    cout<<"Age: "<<age<<endl;
+    cout<<"Gender: "<<gender<<endl;
 }

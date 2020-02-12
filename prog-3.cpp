@@ -1,127 +1,87 @@
-#include <iostream>
+#include<iostream>
+#include<string.h>
 using namespace std;
-int maxnumber(int&,int&);
-int minnumber(int&,int&);
-void toupper(char (&rs1)[20]);
-void tolower(char (&rs2)[20]);
-void toreverse(char (&rs3)[20]);
-int& maxnumber1(int&,int&);
-int& minnumber1(int&,int&);
-char& touppercase(char (&rs1)[20]);
-char& tolowercase(char (&rs2)[20]);
-char& toreversecase(char (&rs3)[20]);
+
+class Student
+{
+    private:
+        int rollno;
+        char name[10];
+        int semester;
+        float c_marks;
+        float cpp_marks;
+        float java_marks;
+        float total_marks;
+        float percentage;
+        char grade[4];
+    public:
+        void setstudent(int rno,char nm[],int sem,float cm,float cppm,float jm);
+        void calculatetotal_marks();
+        void calculatepercentage();
+        void calculategrade();
+        void showstudent();
+
+};
 int main()
 {
-    int a,b;
-    char s1[20],s2[20],s3[20];
-    cout<<"enter two numbers: "<<endl;
-    cin>>a>>b;
-    cout<<"Maximum No using pass by reference is: "<<maxnumber(a,b)<<endl;
-    cout<<"Maximum No using return by reference is: "<<maxnumber1(a,b)<<endl;
-    cout<<"Minimum No using pass by reference is: "<<minnumber(a,b)<<endl;
-    cout<<"Minimum No using return by reference is: "<<minnumber1(a,b)<<endl;
-    cout<<"enter string: "<<endl;
-    cin>>s1;
-    toupper(s1);
-    cout<<"Uppercase of string1 using pass by reference is: "<<s1<<endl;
-    s1[20]=touppercase(s1);
-    cout<<"Uppercase of string1 using return by reference is: "<<s1<<endl;
-    cout<<"enter string2: "<<endl;
-    cin>>s2;
-    tolower(s2);
-    cout<<"Lowercase of string2 using pass by reference is: "<<s2<<endl;
-    s2[20]=tolowercase(s2);
-    cout<<"Lowercase of string2 using return by reference is: "<<s2<<endl;
-    cout<<"enter string3: "<<endl;
-    cin>>s3;
-    toreverse(s3);
-    cout<<"reverse of string3 using pass by reference is: "<<s3<<endl;
-    s3[20]=toreversecase(s3);
-    cout<<"reverse of string3 using return by reference is: "<<s3<<endl;
-}
-int maxnumber(int& x,int& y)
-{
-    if(x>y)
-        return x;
-    else
-        return y;
-}
-int& maxnumber1(int& x,int& y)
-{
-    if(x>y)
-        return x;
-    else
-        return y;
-}
-int minnumber(int& x,int& y)
-{
-    if(x<y)
-        return x;
-    else
-        return y;
-}
-int& minnumber1(int& x,int& y)
-{
-    if(x<y)
-        return x;
-    else
-        return y;
-}
-void toupper(char (&rs1)[20])
-{
-    for(int i=0;rs1[i]!='\0';i++)
-        {
-            if(rs1[i]>=97 && rs1[i]<=122)
-            rs1[i]=rs1[i]-32;
-        }
-}
-char& touppercase(char (&rs1)[20])
-{
-    for(int i=0;rs1[i]!='\0';i++)
-        {
-            if(rs1[i]>=97 && rs1[i]<=122)
-            rs1[i]=rs1[i]-32;
-        }
-    return rs1[20];
-}
-void tolower(char (&rs2)[20])
-{
-    for(int i=0;rs2[i]!='\0';i++)
-        {
-            if(rs2[i]>=65 && rs2[i]<97)
-            rs2[i]=rs2[i]+32;
-        }
-}
-char& tolowercase(char (&rs2)[20])
-{
-    for(int i=0;rs2[i]!='\0';i++)
-        {
-            if(rs2[i]>=65 && rs2[i]<97)
-            rs2[i]=rs2[i]+32;
-        }
-        return rs2[20];
-}
-void toreverse(char (&rs3)[20])
-{
-    int i=0,j=0;
-    for(j=0;rs3[j]!='\0';j++);
-    char temp[20];
-    temp[j--]='\0';
-    for(i=0;rs3[i]!='\0';i++)
-    temp[j--]=rs3[i];
-    for(int k=0;k<i;k++)
-    rs3[k]=temp[k];
+    Student hardil;
+    hardil.setstudent(22,"ruchika",2,43,45,34);
+    hardil.calculatetotal_marks();
+    hardil.calculatepercentage();
+    hardil.calculategrade();
+    hardil.showstudent();
 
+    cout<<"----------------------------------------------------"<<endl;
+
+    Student mira;
+    mira.setstudent(11,"priyanka",2,56,32,45);
+    mira.calculatetotal_marks();
+    mira.calculatepercentage();
+    mira.calculategrade();
+    mira.showstudent();
+    return 0;
 }
-char& toreversecase(char (&rs3)[20])
+
+void Student::setstudent(int rno,char nm[],int sem,float cm,float cppm,float jm)
 {
-    int i=0,j=0;
-    for(j=0;rs3[j]!='\0';j++);
-    char temp[20];
-    temp[j--]='\0';
-    for(i=0;rs3[i]!='\0';i++)
-    temp[j--]=rs3[i];
-    for(int k=0;k<i;k++)
-    rs3[k]=temp[k];
-    return rs3[20];
+    rollno=rno;
+    strcpy(name,nm);
+    semester=sem;
+    c_marks=cm;
+    cpp_marks=cppm;
+    java_marks=jm;
 }
+void Student::calculatetotal_marks()
+{
+    total_marks=c_marks+cpp_marks+java_marks;
+}
+void Student::calculatepercentage()
+{
+    percentage=total_marks/3;
+}
+void Student::calculategrade()
+{
+    if(percentage>=70)
+        grade='A';
+    else if(percentage>=60)
+        grade='B';
+    else if(percentage>=50)
+        grade='C';
+    else if(percentage>=40)
+        grade='Pass';
+    else
+        grade='Fail';
+}
+void Student::showstudent()
+{
+    cout<<"Roll no: "<<rollno<<endl;
+    cout<<"Name: "<<name<<endl;
+    cout<<"Semester: "<<semester<<endl;
+    cout<<"C_Marks: "<<c_marks<<endl;
+    cout<<"CPP_Marks: "<<cpp_marks<<endl;
+    cout<<"Java_Marks: "<<java_marks<<endl;
+    cout<<"Total_Marks: "<<total_marks<<endl;
+    cout<<"Percentage: "<<percentage<<endl;
+  //  cout<<"Grade: "<<grade<<endl;
+}
+
